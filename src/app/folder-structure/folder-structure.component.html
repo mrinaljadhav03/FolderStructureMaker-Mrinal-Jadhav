@@ -1,0 +1,19 @@
+
+<div>
+    <p>
+        FOLDER STRUCTURE MAKER
+    </p>
+    <div>
+        <button class="rootButton" [disabled]="isAddRootFolderDisabled" (click)="addToRootFolder()">Add Folder to Root</button>
+    
+        <div *ngFor="let node of rootFolder.children">
+            <app-recursive-node (deleteNode)="removeNode($event)" [node]="node"></app-recursive-node>
+        </div>
+        
+    </div>
+    
+    
+    <div class="json">
+        <textarea class="jsonText" [value]="fileStructureJSON()" readonly></textarea>
+    </div>
+</div>

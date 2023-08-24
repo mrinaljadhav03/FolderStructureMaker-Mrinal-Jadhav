@@ -1,0 +1,43 @@
+<div>
+    <ng-container *ngIf="node">
+        <ng-container *ngIf="node.editable; else showName">
+            <ul> <input type="text" [(ngModel)]="node.name" /> <button class="button" (click)="renameNode(node)">Save</button> <button
+                    (click)="cancelNode(node)" class="button delete">Cancel</button></ul>
+
+        </ng-container>
+        <ng-template #showName>
+            <ul class="node" *ngIf="isFolder(node)">
+                <span class="bracket"></span>
+                <img style="width: 25px;height: 14px;" src="../../assets/folder-open-regular.svg">
+                <span (mouseenter)="showButton(node)" (mouseleave)="hideButton(node)">{{node.name}}
+                    <button *ngIf="node.deleteButton" class="button" (click)="addChild(node)">Add Child Node</button>
+                    <button *ngIf="node.deleteButton" class="button delete" (click)="cancelNode(node)">Delete</button>
+                </span>
+                <ng-container *ngIf="hasChildren(node)">
+                    <div *ngFor="let childNode of node.children">
+                        <app-recursive-node [node]="childNode"></app-recursive-node>
+                    </div>
+
+                </ng-container>
+            </ul>
+        </ng-template>
+
+
+        <ul class="node" *ngIf="isFile(node)"><span class="bracket"></span><img style="width: 25px;height: 14px;"
+                src="../../assets/file-regular.svg"><span (mouseenter)="showButton(node)"
+                (mouseleave)="hideButton(node)">{{node.name}} <button class="button delete" *ngIf="node.deleteButton"
+                    (click)="cancelNode(node)">Delete</button> </span>
+        </ul>
+
+        <ul class="node" *ngIf="!isFile(node) && !isFolder(node)">
+            <span class="bracket"></span>
+            <span>
+                {{node.name}}
+                <button class="button"  (click)="updateType(node,'file')"> File</button>
+                <button class="button"  (click)="updateType(node,'folder')"> Folder</button>
+            </span>
+        </ul>
+    </ng-container>
+
+
+</div>
