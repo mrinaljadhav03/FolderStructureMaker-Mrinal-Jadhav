@@ -8,7 +8,7 @@
         <ng-template #showName>
             <ul class="node" *ngIf="isFolder(node)">
                 <span class="bracket"></span>
-                <img style="width: 25px;height: 14px;" src="/assets/folder-open-regular.svg">
+                <img style="width: 25px;height: 14px;" src="./assets/folder-open-regular.svg">
                 <span (mouseenter)="showButton(node)" (mouseleave)="hideButton(node)">{{node.name}}
                     <button *ngIf="node.deleteButton" class="button" (click)="addChild(node)">Add Child Node</button>
                     <button *ngIf="node.deleteButton" class="button delete" (click)="cancelNode(node)">Delete</button>
@@ -24,7 +24,7 @@
 
 
         <ul class="node" *ngIf="isFile(node)"><span class="bracket"></span><img style="width: 25px;height: 14px;"
-                src="/assets/file-regular.svg"><span (mouseenter)="showButton(node)"
+                src="./assets/file-regular.svg"><span (mouseenter)="showButton(node)"
                 (mouseleave)="hideButton(node)">{{node.name}} <button class="button delete" *ngIf="node.deleteButton"
                     (click)="cancelNode(node)">Delete</button> </span>
         </ul>
