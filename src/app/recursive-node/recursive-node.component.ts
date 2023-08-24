@@ -24,7 +24,6 @@ export class RecursiveNodeComponent {
   }
 
   renameNode(node: NodeModel): void {
-    console.log(node);
     node.editable = false;
     if (node.name === "")
       this.deleteNode.emit(node.id);
@@ -43,10 +42,8 @@ export class RecursiveNodeComponent {
   }
 
   addChild(node: NodeModel) {
-    console.log(node)
     let newNode: NodeModel = { id: Date.now().toString(), type: "unset", name: "", children: [], editable: true ,deleteButton:false }
     this.addChildById(node, node.id, newNode)
-    console.log(node)
   }
 
   addChildById(node: NodeModel, targetId: string, childToAdd: NodeModel) {
@@ -68,7 +65,6 @@ export class RecursiveNodeComponent {
 
   updateType(node:NodeModel,type:'folder' | 'file' | 'unset'){
     node.type=type
-    console.log(node,'---')
   }
 
 }

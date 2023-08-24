@@ -98,7 +98,6 @@ export class FolderStructureComponent {
   }
 
   removeNode(nodeId: any) {
-    console.log(nodeId)
     this.rootFolder.children?.forEach((node, index) => {
       this.deleteNode(node, nodeId, index)
     })
